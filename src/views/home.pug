@@ -6,28 +6,50 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Zoom Clone
         link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+        style
+            include ../public/css/style.css
     body
         header
             h1 Zoom Clone Project
         main
-            div#welcome
-                div#login
-                    h3
-                form#user
-                    input(placeholder="Enter your nickname", required, type="text")
-                    button Save
-                form#roomname
-                    input(name="room" placeholder="Enter the room name", required, type="text")
-                    button Enter Room
-                h4
-                table
-            div#room
-                h3
-                ul
-                form#msg
-                    input(placeholder="message", required, type="text")
-                    button Send
-                div#leave
-                    button Leave Room
+            section
+                div#welcome
+                    h2
+                    form#username
+                        input(placeholder="username", required, type="text")
+                        button Save
+                    form#roomname
+                        input(placeholder="room name", required, type="text")
+                        button Enter room
+                h2#roomwelcome
+                section#call
+                    aside#myStream
+                        div.center
+                            h2#myusername
+                            video#myFace(autoplay, playsinline, width="400", height="350")
+                            button#setting Setting
+                    aside#peersStream
+                        div.center
+                            h2#peersusername
+                            h3#loading Waiting for the other person to join...
+                            video#peersFace(autoplay, playsinline, width="400", height="350")
+                    div#chat
+                        ul
+                        form#msg
+                            input(placeholder="message", required, type="text")
+                            button Send
+
+                    div.modal#settingmodal
+                        div.modal-content
+                            div.modal-header
+                                span.close &times;
+                                h2 Setting
+                            div.modal-body
+                                button.custom#mute Unmute
+                                button.custom#camera Turn Camera Off
+                                select#cameras
+                            div.modal-footer
+                                h5 Code for this modal adapted from!{' '}
+                                    a(href="https://www.w3schools.com/howto/howto_css_modals.asp") here.
         script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
